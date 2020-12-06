@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>TODO</title>
+    <link rel="stylesheet" href="app.css" />
+    <script src="https://use.fontawesome.com/e3ae05b8e6.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <h1 class="mainTitle">TODOS</h1>
+      <div id="appTodo">
+        <div>
+               <div class="form">
+                <div class="inputArea">
+                  <input
+                    type="text"
+                    class="inputText"
+                    placeholder="something todo task"
+                    v-on:keydown.enter.shift="addItem"
+                    v-model="todoItem"
+                  />
+                </div>
+              </div>
+
+              <div class="searchBox">
+                <i class="fa fa-search searchBox__icon"></i>
+                <input
+                  type="text"
+                  class="searchBox__input"
+                  placeholder="something keyword"
+                  v-model="searchWord"
+                />
+              </div>
+
+              <ul class="list">
+                <transition-group name="fade">
+                  <li
+                    class="list__item"
+                    v-for="(item,index) in filteredItems"
+                    v-bind:key="item.id"
+                    v-bind:class="{'is-checked': item.isChecked}"
+                  >
+                    <i
+                      class="fa fa-circle-thin icon-check"
+                      v-on:click="changeStatus(item)"
+                    ></i>
+                    <span>｛{ item.text }｝</span>
+                    <i
+                      class="fa fa-trash icon-trash"
+                      v-on:click="doRemove(index)"
+                    ></i>
+                  </li>
+                </transition-group>
+              </ul>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.17.1/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
