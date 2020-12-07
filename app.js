@@ -1,5 +1,6 @@
-Vue.component("todo-item", {
-  data: function() {
+var app1 = new Vue({
+  el: '#appTodo',
+  data: function() { // 初期値を入力
     return {
       items: [
         { id: 1, text: "sample todo1", isChecked: false },
@@ -7,7 +8,8 @@ Vue.component("todo-item", {
       ],
       nextID: 3,
       todoItem: "",
-      searchWord: ""
+      searchWord: "",
+      editMode: false,
     };
   },
   computed: {
@@ -22,10 +24,10 @@ Vue.component("todo-item", {
         text: this.todoItem,
         isChecked: false
       }),
-        (this.todoItem = "");
+        (this.todoItem = "")
     },
     doRemove(index) {
-      this.items.splice(index, 1);
+      this.items.splice(index, 1); //要素を削除してつなぎ合わせる 第二引数に１を指定しないと全てが消える
     },
     changeStatus(item) {
       item.isChecked = item.isChecked ? false : true;
@@ -33,6 +35,8 @@ Vue.component("todo-item", {
     searchItem(list, key) {
       return list.filter(function(item) {
         return item.text.indexOf(key) !== -1 || key === "";
+        // 文字列.indexOf( 検索したい文字)
+        // -1 は存在しない場合という意味
       });
     }
   }

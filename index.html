@@ -10,20 +10,26 @@
   </head>
   <body>
     <div class="main">
-      <h1 class="mainTitle">TODOS</h1>
+      <h1 class="mainTitle">TODO LIST</h1>
       <div id="appTodo">
         <div>
+
                <div class="form">
                 <div class="inputArea">
                   <input
                     type="text"
                     class="inputText"
-                    placeholder="something todo task"
-                    v-on:keydown.enter.shift="addItem"
+                    placeholder="ここにTODOを内容を書く"
+                    v-on:keydown.enter="addItem"
                     v-model="todoItem"
                   />
                 </div>
-              </div>
+               </div>
+
+               <button
+                 v-on:click="addItem"
+                 class="btn add-todo">TODOを追加
+               </button>
 
               <div class="searchBox">
                 <i class="fa fa-search searchBox__icon"></i>
@@ -37,6 +43,7 @@
 
               <ul class="list">
                 <transition-group name="fade">
+                  <input type="checkbox">
                   <li
                     class="list__item"
                     v-for="(item,index) in filteredItems"
@@ -47,7 +54,7 @@
                       class="fa fa-circle-thin icon-check"
                       v-on:click="changeStatus(item)"
                     ></i>
-                    <span>｛{ item.text }｝</span>
+                    <span> {{ item.text }}</span>
                     <i
                       class="fa fa-trash icon-trash"
                       v-on:click="doRemove(index)"
