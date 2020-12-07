@@ -3,13 +3,17 @@ var app1 = new Vue({
   data: function() { // 初期値を入力
     return {
       items: [
-        { id: 1, text: "sample todo1", isChecked: false },
-        { id: 2, text: "sample todo2", isChecked: true }
+        { id: 1, text: "sample todo1", isChecked: false, edit:false },
+        { id: 2, text: "sample todo2", isChecked: true, edit:false }
       ],
+      Validation:{
+        todoItem: "",
+      },
       nextID: 3,
       todoItem: "",
       searchWord: "",
-      editMode: false,
+      edit: false,
+      errors: [],
     };
   },
   computed: {
@@ -19,13 +23,16 @@ var app1 = new Vue({
   },
   methods: {
     addItem() {
+      if (this.todoItem !== ""){
       this.items.push({
         id: this.nextID++,
         text: this.todoItem,
         isChecked: false
-      }),
-        (this.todoItem = "")
+      })
+    }
+        (this.todoItem = "") //入力後に空にする
     },
+
     doRemove(index) {
       this.items.splice(index, 1); //要素を削除してつなぎ合わせる 第二引数に１を指定しないと全てが消える
     },
@@ -39,6 +46,9 @@ var app1 = new Vue({
         // -1 は存在しない場合という意味
       });
     }
+
+
+
   }
 }
 )
