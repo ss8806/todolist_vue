@@ -7,7 +7,7 @@ var app1 = new Vue({
         { id: 2, text: "sample todo2", isChecked: true, edit:false }
       ],
       Validation:{
-        todoItem: "",
+        result: "",
       },
       nextID: 3,
       todoItem: "",
@@ -27,12 +27,13 @@ var app1 = new Vue({
       this.items.push({
         id: this.nextID++,
         text: this.todoItem,
-        isChecked: false
+        isChecked: false,
       })
+      this.Validation.result=""; // validationを空にする。
     }else{
-      console.log("空です");
+      this.Validation.result="入力してください";
     }
-        (this.todoItem = "") //入力後に空にする
+        this.todoItem = ""; //入力後に空にする。
     },
 
     doRemove(index) {

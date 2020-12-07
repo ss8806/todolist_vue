@@ -9,7 +9,7 @@
     <script src="https://use.fontawesome.com/e3ae05b8e6.js"></script>
   </head>
   <body>
-    <div class="main">
+    <div class="main"> <!-- width 400pxにして margin 100px auto-->
       <h1 class="mainTitle">TODO LIST</h1>
       <div id="appTodo">
         <div>
@@ -24,11 +24,11 @@
                     v-model="todoItem"
 
                   />
-                </div>
-                <p class="error">
-                  あああ
-                </p>
-               </div>
+                 </div>
+                  <p class="error">
+                    {{Validation.result}}
+                  </p>
+                 </div>
 
                <button
                  v-on:click="addItem"
