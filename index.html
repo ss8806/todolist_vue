@@ -17,13 +17,17 @@
                <div class="form">
                 <div class="inputArea">
                   <input
-                    type="text"
+                    v:bind:type="text"
                     class="inputText"
                     placeholder="ここにTODOを内容を書く"
                     v-on:keydown.shift.enter="addItem"
                     v-model="todoItem"
+
                   />
                 </div>
+                <p class="error">
+                  あああ
+                </p>
                </div>
 
                <button
@@ -43,7 +47,6 @@
 
               <ul class="list">
                 <transition-group name="fade">
-                  <input type="checkbox">
                   <li
                     class="list__item"
                     v-for="(item,index) in filteredItems"
@@ -62,6 +65,7 @@
                   </li>
                 </transition-group>
               </ul>
+
         </div>
       </div>
     </div>

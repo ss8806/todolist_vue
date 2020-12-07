@@ -29,6 +29,8 @@ var app1 = new Vue({
         text: this.todoItem,
         isChecked: false
       })
+    }else{
+      console.log("空です");
     }
         (this.todoItem = "") //入力後に空にする
     },
@@ -43,11 +45,9 @@ var app1 = new Vue({
       return list.filter(function(item) {
         return item.text.indexOf(key) !== -1 || key === "";
         // 文字列.indexOf( 検索したい文字)
-        // -1 は存在しない場合という意味
+        // -1 は存在しない場合という意味、 !==-1 は存在する場合
       });
     }
-
-
 
   }
 }

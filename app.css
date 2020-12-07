@@ -131,3 +131,7 @@ body{
   padding: 5px 10px;
   font-size: 16px;
 }
+.is-checked{
+  background: #d8d8d8;
+  color: #888;
+}
