@@ -1,4 +1,4 @@
-var app1 = new Vue({
+var app1 =new Vue({
   el: '#appTodo',
   data: function() { // 初期値を入力
     return {
@@ -10,9 +10,10 @@ var app1 = new Vue({
         result: "",
       },
       nextID: 3,
+      text: "",
       todoItem: "",
       searchWord: "",
-      edit: false,
+      edit: true,
       errors: [],
     };
   },
@@ -28,6 +29,7 @@ var app1 = new Vue({
         id: this.nextID++,
         text: this.todoItem,
         isChecked: false,
+        edit: false,
       })
       this.Validation.result=""; // validationを空にする。
     }else{
@@ -42,8 +44,11 @@ var app1 = new Vue({
     changeStatus(item) {
       item.isChecked = item.isChecked ? false : true;
     },
+    changeEdit(item){
+      item.edit = item.edit ? false : true;
+    },
     searchItem(list, key) {
-      return list.filter(function(item) {
+      return list.filter(function(item) { //配列listからitemを絞り出す
         return item.text.indexOf(key) !== -1 || key === "";
         // 文字列.indexOf( 検索したい文字)
         // -1 は存在しない場合という意味、 !==-1 は存在する場合
@@ -53,3 +58,12 @@ var app1 = new Vue({
   }
 }
 )
+
+Vue.directive('auto-focus', { //カスタムディレクティブ
+  bind: function () {
+  	var el = this.el;
+    Vue.nextTick(function(){
+    	el.focus();
+    });
+  }
+})

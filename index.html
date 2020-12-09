@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>TODO</title>
+    <title>ToDo List</title>
     <link rel="stylesheet" href="app.css" />
     <script src="https://use.fontawesome.com/e3ae05b8e6.js"></script>
   </head>
@@ -17,12 +17,11 @@
                <div class="form">
                 <div class="inputArea">
                   <input
-                    v:bind:type="text"
+
                     class="inputText"
                     placeholder="ここにTODOを内容を書く"
                     v-on:keydown.shift.enter="addItem"
                     v-model="todoItem"
-
                   />
                  </div>
                   <p class="error">
@@ -52,16 +51,32 @@
                     v-for="(item,index) in filteredItems"
                     v-bind:key="item.id"
                     v-bind:class="{'is-checked': item.isChecked}"
+                    v-on:click="edit = true"
                   >
                     <i
                       class="fa fa-circle-thin icon-check"
                       v-on:click="changeStatus(item)"
                     ></i>
-                    <span> {{ item.text }}</span>
+
+                      <span
+                      v-if="!item.edit"
+                      v-text="item.text"
+                      v-on:click="changeEdit(item)">
+                      >
+                      </span>
+
+                     <input
+                       :type="text"
+                       v-if="item.edit"
+                       v-model="item.text"
+                       v-on:blur="changeEdit(item)"
+                     >
+
                     <i
                       class="fa fa-trash icon-trash"
                       v-on:click="doRemove(index)"
                     ></i>
+
                   </li>
                 </transition-group>
               </ul>
@@ -71,6 +86,9 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios@0.17.1/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
     <script src="app.js"></script>
   </body>
 </html>
