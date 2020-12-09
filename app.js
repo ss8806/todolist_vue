@@ -3,8 +3,8 @@ var app1 =new Vue({
   data: function() { // 初期値を入力
     return {
       items: [
-        { id: 1, text: "sample todo1", isChecked: false, edit:false },
-        { id: 2, text: "sample todo2", isChecked: true, edit:false }
+        { id: 1, text: "sample todo1", isChecked: false, edit:false, isdone: false},
+        { id: 2, text: "sample todo2", isChecked: true, edit:false, isdone: true}
       ],
       Validation:{
         result: "",
@@ -13,8 +13,10 @@ var app1 =new Vue({
       text: "",
       todoItem: "",
       searchWord: "",
-      edit: true,
+      edit: "false",
       errors: [],
+
+
     };
   },
   computed: {
@@ -29,7 +31,9 @@ var app1 =new Vue({
         id: this.nextID++,
         text: this.todoItem,
         isChecked: false,
-        edit: false,
+        edit: false, // 新しく追加したItemにもeditのプロパティが必要
+        isdone: false
+
       })
       this.Validation.result=""; // validationを空にする。
     }else{
@@ -43,6 +47,9 @@ var app1 =new Vue({
     },
     changeStatus(item) {
       item.isChecked = item.isChecked ? false : true;
+    },
+    changeIcon(item) {
+      item.isdone = item.isdone ? false : true
     },
     changeEdit(item){
       item.edit = item.edit ? false : true;

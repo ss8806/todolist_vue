@@ -51,11 +51,13 @@
                     v-for="(item,index) in filteredItems"
                     v-bind:key="item.id"
                     v-bind:class="{'is-checked': item.isChecked}"
-                    v-on:click="edit = true"
                   >
                     <i
-                      class="fa fa-circle-thin icon-check"
-                      v-on:click="changeStatus(item)"
+                      class="fa"
+                      v-bind:class="{'fa-circle-thin icon-check': !item.isdone ,
+                                     'fa-check-circle icon-check': item.isdone}"
+                      v-on:click="changeStatus(item),changeIcon(item)"
+
                     ></i>
 
                       <span
@@ -69,7 +71,7 @@
                        :type="text"
                        v-if="item.edit"
                        v-model="item.text"
-                       v-on:blur="changeEdit(item)"
+                       v-on:keydown.shift.enter="changeEdit(item)"
                      >
 
                     <i
