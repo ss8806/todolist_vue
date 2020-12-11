@@ -15,7 +15,7 @@ body{
 .mainTitle{
   text-align: center;
   font-size: 3em;
-  color: rgba(175, 47, 47, 0.15);
+  color: rgb(0, 191, 255);
 }
 .form{
   text-align: right;
@@ -136,6 +136,6 @@ body{
   color: #888;
 }
 input{
-  width: 80%; 
+  width: 80%;
   box-sizing:border-box;
 }
